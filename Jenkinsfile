@@ -43,8 +43,9 @@ pipeline{
                 
                 def oasPath = apimkrPath+files;
                 echo "${oasPath}"
+                def batscpt = files+' '+org+' '+oasPath
                 dir(apimkrPath){
-                   bat("ctsapimakr initialize ${files} ${org} ${oasPath}")
+                   bat("ctsapimakr initialize ${batscpt}")
                 }
                            
             }
