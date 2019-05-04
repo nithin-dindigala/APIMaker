@@ -1,3 +1,4 @@
+def files = ''
 pipeline{
     agent any
     tools {
@@ -12,7 +13,7 @@ pipeline{
         def apimkrPath = "C:\\Users\\anu\\Desktop\\Cognizant\\APIMaker\\ctsapimakr_v3\\ctsapimakr"
         def org = "nithindindigala-eval"
     }
-     def files = ''
+     
     stages{
    
    
