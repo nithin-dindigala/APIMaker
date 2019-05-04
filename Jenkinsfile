@@ -1,3 +1,7 @@
+def files = ''
+def gitPath = "C:\\Users\\anu\\Desktop\\Cognizant\\Jenkins\\APIMAKER\\APIMakrTargetRepo\\APIMaker\\"
+def apimkrPath = "C:\\Users\\anu\\Desktop\\Cognizant\\APIMaker\\ctsapimakr_v3\\ctsapimakr\\"
+def org = "nithindindigala-eval"
 pipeline{
     agent any
     tools {
@@ -9,10 +13,7 @@ pipeline{
     environment{
         
         NODE_PATH = "C:\\Users\\anu\\AppData\\Roaming\\npm\\node_modules"
-        def files = ''
-def gitPath = "C:\\Users\\anu\\Desktop\\Cognizant\\Jenkins\\APIMAKER\\APIMakrTargetRepo\\APIMaker\\"
-def apimkrPath = "C:\\Users\\anu\\Desktop\\Cognizant\\APIMaker\\ctsapimakr_v3\\ctsapimakr\\"
-def org = "nithindindigala-eval"
+        
     }
      
     stages{
@@ -44,8 +45,9 @@ def org = "nithindindigala-eval"
                 def oasPath = apimkrPath+files;
                 echo "${oasPath}"
                 def batscpt = files+' '+org+' '+oasPath
+                echo "${batscpt}"
                 dir(apimkrPath){
-                   bat("ctsapimakr initialize ${batscpt}")
+                   bat("ctsapimakr initialize '${files}' '${org}' '${oasPath}'")
                 }
                            
             }
