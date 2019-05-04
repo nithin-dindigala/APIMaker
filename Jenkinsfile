@@ -12,7 +12,7 @@ pipeline{
 
     environment{
         
-        NODE_PATH = "C:\Users\anu\AppData\Roaming\npm\node_modules"
+        NODE_PATH = "C:\\Users\\anu\\AppData\\Roaming\\npm\\node_modules"
     }
      
     stages{
