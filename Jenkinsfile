@@ -13,10 +13,9 @@ pipeline{
         def org = "nithindindigala-eval"
     }
     stages{
-    script{
-    def files = '';
+   
+    def files = ''
     
-    }
         stage('Git Connection'){
             
             steps{
