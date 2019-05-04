@@ -10,8 +10,13 @@ pipeline{
         
         def gitPath = "C:\\Users\\anu\\Desktop\\Cognizant\\Jenkins\\APIMAKER\\APIMakrTargetRepo\\APIMaker"
         def apimkrPath = "C:\\Users\\anu\\Desktop\\Cognizant\\APIMaker\\ctsapimakr_v3\\ctsapimakr"
+        def org = "nithindindigala-eval"
     }
     stages{
+    script{
+    def files = '';
+    
+    }
         stage('Git Connection'){
             
             steps{
@@ -19,7 +24,7 @@ pipeline{
                 dir(gitPath){
                    script{
                     sh('git pull')
-                    def files = sh(returnStdout:true, script:'git show --pretty="" --name-only')
+                    files = sh(returnStdout:true, script:'git show --pretty="" --name-only')
                     echo "${files}"
                    
                    }
@@ -29,17 +34,22 @@ pipeline{
             
         }
         
-        stage('APIMaker-CreateAPI'){
+        stage('APIMaker-CreateProxy'){
             
             steps{
+                script{
                 
+                def oasPath = apimkrPath+files;
+                echo "${oasPath}"
                 dir(apimkrPath){
-                   /* bat('ctsapimakr initialize customer-2 nithindindigala-eval swagger.yaml')*/
+                   bat('ctsapimakr initialize ${files} ${org} ${oasPath}')
                 }
+                           
+            }
             }
             
         }
-        stage('APIMaker-TestAPI'){
+        stage('APIMaker-TestProxy'){
             
             steps{
                 
@@ -47,7 +57,7 @@ pipeline{
             }
             
         }
-        stage('APIMaker-DeployAPI'){
+        stage('APIMaker-DeployProxy'){
             
             steps{
                 
