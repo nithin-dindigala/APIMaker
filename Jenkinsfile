@@ -18,9 +18,10 @@ pipeline{
                 
                 dir(gitPath){
                    script{
+                    sh('git pull')
                     def files = sh(returnStdout:true, script:'git show --pretty="" --name-only')
                     echo "${files}"
-                    sh('git pull')
+                   
                    }
                    
                 }
