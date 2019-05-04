@@ -32,7 +32,7 @@ pipeline{
             steps{
                 
                 dir(apimkrPath){
-                    bat('ctsapimakr initialize customer-2 nithindindigala-eval swagger.yaml')
+                   /* bat('ctsapimakr initialize customer-2 nithindindigala-eval swagger.yaml')*/
                 }
             }
             
