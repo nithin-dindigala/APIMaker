@@ -5,13 +5,14 @@ pipeline{
       nodejs 'node'
       git 'Default'
     }
-def files = ''
-def gitPath = "C:\\Users\\anu\\Desktop\\Cognizant\\Jenkins\\APIMAKER\\APIMakrTargetRepo\\APIMaker\\"
-def apimkrPath = "C:\\Users\\anu\\Desktop\\Cognizant\\APIMaker\\ctsapimakr_v3\\ctsapimakr\\"
-def org = "nithindindigala-eval"
+
     environment{
         
         NODE_PATH = "C:\\Users\\anu\\AppData\\Roaming\\npm\\node_modules"
+        def files = ''
+def gitPath = "C:\\Users\\anu\\Desktop\\Cognizant\\Jenkins\\APIMAKER\\APIMakrTargetRepo\\APIMaker\\"
+def apimkrPath = "C:\\Users\\anu\\Desktop\\Cognizant\\APIMaker\\ctsapimakr_v3\\ctsapimakr\\"
+def org = "nithindindigala-eval"
     }
      
     stages{
