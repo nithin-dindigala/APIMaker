@@ -8,7 +8,7 @@ pipeline{
 
     environment{
         
-        def gitPath = "C:\\Users\\anu\\Desktop\\Cognizant\\Jenkins\\APIMAKER\\APIMakrRepo\\APIMaker"
+        def gitPath = "C:\\Users\\anu\\Desktop\\Cognizant\\Jenkins\\APIMAKER\\APIMakrTargetRepo\\APIMaker"
         def apimkrPath = "C:\\Users\\anu\\Desktop\\Cognizant\\APIMaker\\ctsapimakr_v3\\ctsapimakr"
     }
     stages{
@@ -20,6 +20,7 @@ pipeline{
                    script{
                     def files = sh(returnStdout:true, script:'git show --pretty="" --name-only')
                     echo "${files}"
+                    sh('git pull')
                    }
                    
                 }
