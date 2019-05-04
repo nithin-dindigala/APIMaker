@@ -18,7 +18,7 @@ pipeline{
                 
                 dir(gitPath){
                    script{
-                    def files = sh(returnStdout:true, script:'git diff --name-only')
+                    def files = sh(returnStdout:true, script:'git show --pretty="" --name-only')
                     echo "${files}"
                    }
                    
