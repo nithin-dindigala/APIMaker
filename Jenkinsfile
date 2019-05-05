@@ -33,6 +33,7 @@ pipeline{
                     def fileName = filelist[0] 
                     def fileNmExt = filelist[1]
                     echo "${fileName}"
+                    echo "${fileNmExt}"
                    }
                    
                 }
