@@ -27,10 +27,10 @@ pipeline{
                    script{
                     sh('git pull')
                     files = sh(returnStdout:true, script:'git show --pretty="" --name-only').trim()
-                    String[] filelist = files.split('/')
-                    def fileName = fileList[0]
                     echo "${files}"
-                   
+                    def filelist = []
+                   filelist = files.tokenize('/')
+                    def fileName = filelist[0]                  
                    }
                    
                 }
