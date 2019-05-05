@@ -45,7 +45,7 @@ pipeline{
                 def gitpullpath = gitPath+files;
                 def cpycmd = gitpullpath+' '+oasPath;
                 def apimkrcmd = files+' '+org+' '+oasPath;
-                echo "${cpycmd}"
+                echo "${gitpullpath} ${oasPath}"
                 bat "COPY ${gitpullpath} ${oasPath}"
                 dir(apimkrPath){
                    bat("ctsapimakr initialize ${apimkrcmd}")
