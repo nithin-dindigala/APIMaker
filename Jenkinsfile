@@ -31,9 +31,8 @@ pipeline{
                     files = sh(returnStdout:true, script:'git show --pretty="" --name-only').trim()
                     echo "${files}"
                    filelist = files.tokenize('/')
-                   if( files == 'Jenkinsfile' ) {
-                       currentBuild.result = 'SUCCESS'
-                       return
+                   if( "${files}" == "Jenkinsfile" ) {
+                    skipRemainingStages = true
                    }
                    }
                    
@@ -43,6 +42,12 @@ pipeline{
         }
         
         stage('APIMaker-CreateProxy'){
+        
+        when {
+                expression {
+                    !skipRemainingStages
+                }
+            }
             
             steps{
                 script{
@@ -59,6 +64,12 @@ pipeline{
             
         }
         stage('APIMaker-TestProxy'){
+        
+        when {
+                expression {
+                    !skipRemainingStages
+                }
+            }
             
             steps{
                 
@@ -67,6 +78,12 @@ pipeline{
             
         }
         stage('APIMaker-DeployProxy'){
+        
+        when {
+                expression {
+                    !skipRemainingStages
+                }
+            }
             
             steps{
                 
