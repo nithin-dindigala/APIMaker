@@ -27,7 +27,7 @@ pipeline{
                    script{
                     sh('git pull')
                     files = sh(returnStdout:true, script:'git show --pretty="" --name-only').trim()
-                    def filelist[] = files.split('/')
+                    String[] filelist = files.split('/')
                     def fileName = fileList[0]
                     echo "${files}"
                    
