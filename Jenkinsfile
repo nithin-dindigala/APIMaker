@@ -31,6 +31,7 @@ pipeline{
                     def filelist = []
                    filelist = files.tokenize('/')
                     def fileName = filelist[0] 
+                    def fileNmExt = filelist[1]
                     echo "${fileName}"
                    }
                    
@@ -44,12 +45,11 @@ pipeline{
             steps{
                 script{
                 
-                def oasPath = apimkrPath+files;
-                def gitpullpath = gitPath+files;
-                def fileName = files.
+                def oasPath = apimkrPath+fileNmExt;
+                def gitpullpath = gitPath+fileNmExt;
                 bat("COPY ${gitpullpath} ${oasPath}")
                 dir(apimkrPath){
-                   bat("ctsapimakr initialize ${fileName} ${org} ${files}")
+                   bat("ctsapimakr initialize ${fileName} ${org} ${fileNmExt}")
                 }
                            
             }
