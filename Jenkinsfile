@@ -1,7 +1,7 @@
 def files = ''
-def gitPath = "C:\\Users\\anu\\Desktop\\Cognizant\\Jenkins\\APIMAKER\\APIMakrTargetRepo\\APIMaker\\"
-def apimkrPath = "C:\\Users\\anu\\Desktop\\Cognizant\\APIMaker\\ctsapimakr_v3\\ctsapimakr\\"
-def org = "nithindindigala-eval"
+def gitPath = 'C:\\Users\\anu\\Desktop\\Cognizant\\Jenkins\\APIMAKER\\APIMakrTargetRepo\\APIMaker\\'
+def apimkrPath = 'C:\\Users\\anu\\Desktop\\Cognizant\\APIMaker\\ctsapimakr_v3\\ctsapimakr\\'
+def org = 'nithindindigala-eval'
 pipeline{
     agent any
     tools {
@@ -18,8 +18,7 @@ pipeline{
      
     stages{
    
-   
-    
+      
         stage('Git Connection'){
             
             steps{
@@ -44,10 +43,9 @@ pipeline{
                 
                 def oasPath = apimkrPath+files;
                 echo "${oasPath}"
-                def batscpt = files+' '+org+' '+oasPath
-                echo "${batscpt}"
+                bat('copy ${oasPath} ${apimkrPath}')
                 dir(apimkrPath){
-                   bat("ctsapimakr initialize '${files}' '${org}' '${oasPath}'")
+                   bat("ctsapimakr initialize ${files} ${org} ${oasPath}")
                 }
                            
             }
