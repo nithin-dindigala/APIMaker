@@ -26,7 +26,7 @@ pipeline{
                 dir(gitPath){
                    script{
                     sh('git pull')
-                    files = sh(returnStdout:true, script:'git show --pretty="" --name-only')
+                    files = sh(returnStdout:true, script:'git show --pretty="" --name-only').trim()
                     echo "${files}"
                    
                    }
