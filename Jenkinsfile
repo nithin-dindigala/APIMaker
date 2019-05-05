@@ -30,7 +30,8 @@ pipeline{
                     echo "${files}"
                     def filelist = []
                    filelist = files.tokenize('/')
-                    def fileName = filelist[0]                  
+                    def fileName = filelist[0] 
+                    echo "${fileName}"
                    }
                    
                 }
