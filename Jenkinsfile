@@ -27,6 +27,8 @@ pipeline{
                    script{
                     sh('git pull')
                     files = sh(returnStdout:true, script:'git show --pretty="" --name-only').trim()
+                    def filelist[] = files.split('/')
+                    def fileName = fileList[0]
                     echo "${files}"
                    
                    }
@@ -43,12 +45,10 @@ pipeline{
                 
                 def oasPath = apimkrPath+files;
                 def gitpullpath = gitPath+files;
-                def cpycmd = gitpullpath+' '+oasPath;
-                def apimkrcmd = files+' '+org+' '+oasPath;
-                echo "${gitpullpath}${oasPath}"
+                def fileName = files.
                 bat("COPY ${gitpullpath} ${oasPath}")
                 dir(apimkrPath){
-                   bat("ctsapimakr initialize ${apimkrcmd}")
+                   bat("ctsapimakr initialize ${fileName} ${org} ${files}")
                 }
                            
             }
