@@ -43,10 +43,12 @@ pipeline{
                 
                 def oasPath = apimkrPath+files;
                 def gitpullpath = gitPath+files;
-                echo "${oasPath}"
-                bat("copy ${gitpullpath} ${apimkrPath}")
+                def cpycmd = gitpullpath+' '+apimkrPath;
+                def apimkrcmd = files+' '+org+' '+oasPath;
+                echo "${cpycmd}"
+                bat("copy ${cpycmd}")
                 dir(apimkrPath){
-                   bat("ctsapimakr initialize ${files} ${org} ${oasPath}")
+                   bat("ctsapimakr initialize ${apimkrcmd}")
                 }
                            
             }
