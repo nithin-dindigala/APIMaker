@@ -43,7 +43,7 @@ pipeline{
                 
                 def oasPath = apimkrPath+files;
                 echo "${oasPath}"
-                bat('copy ${oasPath} ${apimkrPath}')
+                bat("copy ${oasPath} ${apimkrPath}")
                 dir(apimkrPath){
                    bat("ctsapimakr initialize ${files} ${org} ${oasPath}")
                 }
