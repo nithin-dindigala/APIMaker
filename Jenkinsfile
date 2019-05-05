@@ -19,7 +19,7 @@ pipeline{
     stages{
    
       
-        stage('Git Connection'){
+        stage('Git Pull'){
             
             steps{
                 
