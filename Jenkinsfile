@@ -47,7 +47,7 @@ pipeline{
                 def gitpullpath = gitPath+filelist[0]+'\\'+filelist[1];
                 bat("COPY ${gitpullpath} ${oasPath}")
                 dir(apimkrPath){
-                   bat("ctsapimakr initialize ${filelist[0]} ${org} ${filelist[1]}")
+                   bat("ctsapimakr initialize ${filelist[0]} ${org} ${oasPath}")
                 }
                            
             }
