@@ -31,6 +31,10 @@ pipeline{
                     files = sh(returnStdout:true, script:'git show --pretty="" --name-only').trim()
                     echo "${files}"
                    filelist = files.tokenize('/')
+                   if( files == 'Jenkinsfile' ) {
+                       currentBuild.result = 'SUCCESS'
+                       return
+                   }
                    }
                    
                 }
