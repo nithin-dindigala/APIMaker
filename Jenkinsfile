@@ -1,4 +1,6 @@
 def files = ''
+ def filelist = []
+def fileNmExt =''
 def gitPath = 'C:\\Users\\anu\\Desktop\\Cognizant\\Jenkins\\APIMAKER\\APIMakrTargetRepo\\APIMaker\\'
 def apimkrPath = 'C:\\Users\\anu\\Desktop\\Cognizant\\APIMaker\\ctsapimakr_v3\\ctsapimakr\\'
 def org = 'nithindindigala-eval'
@@ -28,12 +30,7 @@ pipeline{
                     sh('git pull')
                     files = sh(returnStdout:true, script:'git show --pretty="" --name-only').trim()
                     echo "${files}"
-                    def filelist = []
                    filelist = files.tokenize('/')
-                    def fileName = filelist[0] 
-                    def fileNmExt = filelist[1]
-                    echo "${fileName}"
-                    echo "${fileNmExt}"
                    }
                    
                 }
@@ -46,11 +43,11 @@ pipeline{
             steps{
                 script{
                 
-                def oasPath = apimkrPath+fileNmExt;
-                def gitpullpath = gitPath+fileNmExt;
+                def oasPath = apimkrPath+filelist[1];
+                def gitpullpath = gitPath+filelist[1];
                 bat("COPY ${gitpullpath} ${oasPath}")
                 dir(apimkrPath){
-                   bat("ctsapimakr initialize ${fileName} ${org} ${fileNmExt}")
+                   bat("ctsapimakr initialize ${filelist[0]} ${org} ${filelist[1]}")
                 }
                            
             }
