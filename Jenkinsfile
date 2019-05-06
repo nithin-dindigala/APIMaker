@@ -34,6 +34,9 @@ pipeline{
                    if( "${files}" == "Jenkinsfile" ) {
                     skipRemainingStages = true
                    }
+                   else{
+                    skipRemainingStages = false
+                   }
                    }
                    
                 }
