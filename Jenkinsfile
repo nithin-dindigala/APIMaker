@@ -87,7 +87,14 @@ pipeline{
             
             steps{
                 
-                echo "test"
+               script{
+                         
+                def deployPath = apimkrPath+filelist[0];
+                dir(deployPath){
+                   bat("npm run deployTest")
+                }
+                           
+            }
             }
             
         }
