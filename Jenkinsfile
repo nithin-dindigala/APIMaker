@@ -30,7 +30,7 @@ pipeline{
                     sh('git pull')
                     files = sh(returnStdout:true, script:'git show --pretty="" --name-only').trim()
                     echo "${files}"
-                   filelist = files.tokenize('/')
+                   filelist = files.tokenize(File.separator)
                    if( "${files}" == "Jenkinsfile" ) {
                     skipRemainingStages = true
                    }
@@ -56,7 +56,7 @@ pipeline{
                 script{
                 
                 def oasPath = apimkrPath+filelist[1];
-                def gitpullpath = gitPath+filelist[0]+'\\'+filelist[1];
+                def gitpullpath = gitPath+filelist[0]+File.separator+filelist[1];
                 bat("COPY ${gitpullpath} ${oasPath}")
                 dir(apimkrPath){
                    bat("ctsapimakr initialize ${filelist[0]} ${org} ${oasPath}")
