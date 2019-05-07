@@ -15,6 +15,7 @@ pipeline{
     environment{
         
         NODE_PATH = "C:\\Users\\anu\\AppData\\Roaming\\npm\\node_modules"
+        FileSep = "\\"
         
     }
      
@@ -30,7 +31,7 @@ pipeline{
                     sh('git pull')
                     files = sh(returnStdout:true, script:'git show --pretty="" --name-only').trim()
                     echo "${files}"
-                   filelist = files.tokenize(File.separator)
+                   filelist = files.tokenize("${env.FileSep}")
                    if( "${files}" == "Jenkinsfile" ) {
                     skipRemainingStages = true
                    }
@@ -56,7 +57,7 @@ pipeline{
                 script{
                 
                 def oasPath = apimkrPath+filelist[1];
-                def gitpullpath = gitPath+filelist[0]+File.separator+filelist[1];
+                def gitpullpath = gitPath+filelist[0]+"${env.FileSep}"+filelist[1];
                 bat("COPY ${gitpullpath} ${oasPath}")
                 dir(apimkrPath){
                    bat("ctsapimakr initialize ${filelist[0]} ${org} ${oasPath}")
