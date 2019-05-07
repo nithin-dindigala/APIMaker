@@ -31,7 +31,7 @@ pipeline{
                     sh('git pull')
                     files = sh(returnStdout:true, script:'git show --pretty="" --name-only').trim()
                     echo "${files}"
-                   filelist = files.tokenize("${env.FileSep}")
+                   filelist = files.tokenize("/")
                    if( "${files}" == "Jenkinsfile" ) {
                     skipRemainingStages = true
                    }
